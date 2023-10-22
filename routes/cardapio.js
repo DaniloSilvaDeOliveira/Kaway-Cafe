@@ -1,13 +1,11 @@
 const { Router } = require('express');
+const produtoController = require('../api/controllers/produtoController.js');
 
 const router = Router();
 
-router.get('/', (req, res) => {
-    res.sendFile('/views/cardapio.html', { root: './'});
-});
 
-router.get('/api', (req, res) => {
-    
-});
+router.get('/', produtoController.getProdutos);
+
+router.get('/:id', produtoController.getProduto);
 
 module.exports = router;

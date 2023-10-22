@@ -1,6 +1,6 @@
-const dotenv = require('dotenv').config();
 const Express = require('express');
-const path = require('path');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const app = Express();
 const port = process.env.PORT || 3000;
@@ -23,8 +23,6 @@ app.use('/cardapio', cardapio);
 
 //rota que disponibiliza a pasta public para acesso
 app.use('/public', Express.static('public'));
-
-
 
 
 
