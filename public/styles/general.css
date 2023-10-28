@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Gelasio&family=Imperial+Script&family=Julius+Sans+One&display=swap');
+
 body{
     margin:0px;
     background-color: #592816;
@@ -120,7 +123,8 @@ header button{
     border-color: #A61103;
 }
 
-.thirdFrame svg {
+.thirdFrame img {
+
     float: right;
     display: flex;
 }
@@ -202,6 +206,10 @@ footer p{
     justify-content: center;
 }
 
+.footer1 svg{
+    margin: 0px 20px 0px 20px;
+}
+
 .footer1 {
     margin: 0px 40px 0px 20px;
 }
@@ -256,7 +264,7 @@ footer p{
         margin-top: 30px;
         border-style: none;
     }
-    .thirdFrame svg {
+    .thirdFrame img {
         display: none;
     }
     .thirdFrame div{

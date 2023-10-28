@@ -19,7 +19,7 @@ module.exports = {
       },
       {
         nome: 'Torta de Chocolate',
-        preco: 10.50,
+        preco: 7.50,
         descricao: 'Torta de chocolate com cobertura de chocolate',
         categoria: 'tortas',
         createdAT: new Date(),
