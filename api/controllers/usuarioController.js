@@ -3,15 +3,19 @@ const UsuarioService = require('../services/usuarioService');
 const usuarioService = new UsuarioService();
 
 class usuarioController{
-    async cadastrarUsuario(req, res){
-        const usuario = req.body;
-
+   static async reqCadastrarUsuario(req, res){
+        const {nome, cpf, telefone, senha} = req.body;
         try{
-            const result = await usuarioService.cadastrarUsuario(usuario);
-            res.status(201).send(usuario);
-        }catch{
-            res.status(400).send(error.message);
+            await usuarioService.cadastrarUsuario({nome, cpf, telefone, senha});
+            res.status(200).json({message: "Usuário cadastrado com sucesso"});
+        }catch(err){
+            res.status(400).json({message: err.message});
         }
+
+    }
+
+    static async pagCadastro(req, res){
+        res.sendFile('/views/cadastro.html', { root: './'});
     }
 }
 

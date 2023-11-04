@@ -1,3 +1,17 @@
+//importa o css de generals
+const link = document.createElement('link');
+link.rel = 'stylesheet';
+link.href = 'styles/general.css';
+document.head.appendChild(link);
+
+//importa o css do animate
+const animateLink = document.createElement('link');
+animateLink.rel = 'stylesheet';
+animateLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css';
+document.head.appendChild(animateLink);
+
+
+
 function loginPage(){
     window.location.href = "login";
 }

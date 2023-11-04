@@ -4,6 +4,8 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Usuario extends Model {
+
+   
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -22,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     isAdmin: DataTypes.BOOLEAN,
   }, {
     sequelize,
+    tableName: 'Usuario',
     modelName: 'Usuario',
     defaultScope: {
       attributes: { exclude: ['senha','isAdmin'] },
