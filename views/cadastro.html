@@ -3,14 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link  type="text/css" rel="stylesheet" href="../public/styles/cadastro.css">
+    <link  type="text/css" rel="stylesheet" href="../public/styles/form.css">
     <script  src="../public/scripts/general.js"></script>
     <script  src="../public/scripts/cadastro.js"></script>
     <title>Cadastro</title>
 </head>
 <body>
 <script>header();</script>
+<div class=" firstFrame">
+    <img class="animate__animated animate__fadeIn" style="animation-duration: 3s;" src="../public/images/photos/pingado.png"  alt="">
+    <div class="animate__animated animate__fadeIn" style="animation-duration: 3s;">
+        <h1>Cadastre-se para uma Jornada Cafeinada</h1>
+        <p>Cadastre-se agora para entrar no mundo do Kaway Café, onde o café é mais do que uma bebida, é uma paixão compartilhada. Ao fazer parte da nossa comunidade de apreciadores de café, você terá acesso a uma série de vantagens exclusivas, incluindo atualizações sobre nossos cafés especiais, eventos emocionantes e ofertas imperdíveis.<br><br>
+            Nossa missão é levá-lo a uma jornada sensorial, onde cada xícara é uma descoberta e cada gole é uma experiência única. Junte-se a nós no Kaway Café e faça parte de uma comunidade apaixonada por café. Cadastre-se agora para embarcar nessa emocionante jornada cafeinada.</p>
+    </div>
+</div>
 <div class="cadastro">
+    
     <form>
         <center>
         <label for="">Nome</label><br>
@@ -27,9 +36,6 @@
         <small id="sCPF">o CPF deve estar no seguinte formato "xxx.xxx.xxx-xx"</small>
         <input placeholder="digite seu CPF aqui" type="text" name="cpf" id="cpf" required><br>
 
-        <label for="">Email</label><br>
-        <small id="sEmail">o Email deve estar no seguinte formato "exemplo@cafe.com"</small>
-        <input placeholder="digite seu email aqui" type="email" name="email" id="email" required><br>
         <label for="">Senha</label><br>
         <small id="sSenha">a senha precisa conter ao menos 1 letra e um numero, e ao menos 8 caracteres</small>
         <input placeholder="digite sua senha aqui" type="password" name="senha" id="senha" required><br>

@@ -21,10 +21,17 @@ function cadastrarPage(){
 function cardapioPage(){
     window.location.href = "cardapio";
 }
+function exitPage(){
+    localStorage.removeItem('token');
+    window.location.href = "/";
+}
+function agendarPage(){
+    window.location.href = "agendar";
+}
 
 
 
-function header() {
+function normalHeader(){
     const headerElement = document.createElement('header');
 
     const logoLink = document.createElement('a');
@@ -34,6 +41,11 @@ function header() {
     logoImage.alt = 'Logo Kaway Café';
     logoLink.appendChild(logoImage);
     headerElement.appendChild(logoLink);
+
+    const KawayCafé = document.createElement('p');
+    KawayCafé.classList.add('logoName');
+    KawayCafé.textContent = 'Kaway Café';
+    headerElement.appendChild(KawayCafé);
 
     const cadastrarButton = document.createElement('button');
     cadastrarButton.textContent = 'CADASTRAR';
@@ -46,6 +58,64 @@ function header() {
     headerElement.appendChild(loginButton);
 
     document.body.appendChild(headerElement);
+}
+
+async function loggedHeader(){
+    const data = { token: localStorage.getItem('token') }
+    const options = {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(data)
+    }
+    const userNameText = await fetch('/usuario/nome', options).then(res => res.json()).then(async res => {
+        return res.nome;
+    });
+    //verifica se o token é válido
+    if(userNameText === undefined){
+        print('sessão expirada');
+        localStorage.removeItem('token');
+        window.location.href = "/";
+    }
+
+    //arruma o header
+    const headerElement = document.createElement('header');
+
+    const logoLink = document.createElement('a');
+    logoLink.href = '/usuario';
+    const logoImage = document.createElement('img');
+    logoImage.classList.add('userLogo');
+    logoImage.src = '../public/images/user.png';
+    logoImage.alt = 'Logo de Usuário Genérico';
+    logoLink.appendChild(logoImage);
+    headerElement.appendChild(logoLink);
+
+    const userName = document.createElement('p');
+    userName.classList.add('userName');
+    userName.textContent = userNameText;
+    headerElement.appendChild(userName);
+
+    const agendarButton = document.createElement('button');
+    agendarButton.textContent = 'AGENDAR';
+    agendarButton.addEventListener('click', agendarPage);
+    headerElement.appendChild(agendarButton);
+
+    const exitButton = document.createElement('button');
+    exitButton.textContent = 'SAIR';
+    exitButton.addEventListener('click', exitPage);
+    headerElement.appendChild(exitButton);
+    document.body.insertBefore(headerElement, document.body.firstChild);
+    
+}
+
+function header() {
+    if(localStorage.getItem('token')){
+        loggedHeader();
+    }else{
+        normalHeader();
+    }
 }
 
 function footer() {

@@ -1,11 +1,7 @@
 const { Router } = require('express');
+const authenticated = require('../api/middleware/authenticated');
 const router = Router();
 
 router
-    .post('/')
-    .get('/')
-    .get('/id/:id')
-    .put('/id/:id')
-    .delete('/id/:id')
-
+    .post('/nome', authenticated.getName)
 module.exports = router;

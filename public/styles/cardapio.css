@@ -32,7 +32,7 @@
     font-family: 'Gelasio', serif;
     font-size: 20px;
     line-height: 20px;
-    width: auto;
+    margin: auto;
     color: #000000;
 }
 
@@ -71,7 +71,8 @@
     }
     .produto{
         margin: 20px;
-        max-width: 200px;
+        width: 350px;
+        
         height: 400px;
     }
     .produto img{

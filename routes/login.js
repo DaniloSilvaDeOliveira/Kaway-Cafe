@@ -1,9 +1,11 @@
 const { Router } = require('express');
+const usuarioController = require('../api/controllers/usuarioController');
 
 const router = Router();
 
-router.get('/', (req, res) => {
-    res.sendFile('/views/login.html', { root: './'});
-});
+router
+.get('/', usuarioController.pagLogin)
+.post('/', usuarioController.login);
+;
 
 module.exports = router;

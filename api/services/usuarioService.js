@@ -1,33 +1,62 @@
 const db = require('../models');
 const bcrypt = require('bcryptjs');
+const { sign } = require('jsonwebtoken');
 
 
 class UsuarioService{
-    async cadastrarUsuario(usuario){
+    
 
+    async cadastrarUsuario(dto){
         const dbUsuario = await db.Usuario.findOne(
             {
-                where: { cpf: usuario.cpf }
+                where: { cpf: dto.cpf }
             });
         if(dbUsuario){
             throw new Error('CPF já cadastrado');
         }else{
             try{
-                const senhaHash = await bcrypt.hash(usuario.senha, 10);
+                const senhaHash = await bcrypt.hashSync(dto.senha, 10);
                 const novoUsuario = await db.Usuario.create({
-                nome: usuario.nome,
-                cpf: usuario.cpf,
-                telefone: usuario.telefone,
+                nome: dto.nome,
+                cpf: dto.cpf,
+                telefone: dto.telefone,
                 senha: senhaHash,
                 isAdmin: false,
                 foto_de_perfil: null
                 });
-                return true;
+                return {novoUsuario};
             }catch(err){
                 throw new Error(err.message);
             }
         }
-}
+    }
+
+    async login(dto){
+        const usuario = await db.Usuario.findOne({
+            attributes: ['id', 'nome', 'cpf', 'telefone', 'senha'],
+            where: {
+                cpf: dto.cpf
+            }
+        })
+        if(!usuario){
+            throw new Error('Usuário não encontrado');
+        }
+        const senhaCorreta = await bcrypt.compareSync(dto.senha, usuario.senha);
+
+        if(!senhaCorreta){
+            throw new Error('Usuario ou senha incorretos');
+        }
+        const accessToken = sign({
+            id: usuario.id,
+            nome: usuario.nome,
+            cpf: usuario.cpf,
+            telefone: usuario.telefone
+        },  process.env.ACCESS_TOKEN_SECRET, {
+            expiresIn: process.env.ACCESS_TOKEN_EXPIRATION
+        })
+        return {accessToken};
+        
+    }
 }
 
 module.exports = UsuarioService;

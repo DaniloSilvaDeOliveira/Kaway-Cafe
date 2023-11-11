@@ -70,16 +70,16 @@
     .cadastro{
         
         border-radius: 0px;
-        margin: 0px;
-        margin-inline: 0rem;
+        margin-top: 100px;
+        margin-inline: 1rem;
     }
     .cadastro form{
         
         padding: 20px 0px 0px 0px;
         width: 100%;
-        border-radius: 0px;
+        border-radius: 16px 60pxs;
         margin: 0px;
-        margin-inline: 0rem;
+        margin-inline: 1rem;
     }
     .cadastro form input{
         width: 70%;

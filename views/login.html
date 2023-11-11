@@ -4,12 +4,31 @@
     <meta charset="UTF-8">
     <script  src="../public/scripts/general.js"></script>
     <script  src="../public/scripts/login.js"></script>
+    <link  type="text/css" rel="stylesheet" href="../public/styles/form.css">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
 <body>
 <script>header();</script>
+<div class="cadastro">
+    <form>
+        <center>
+        <label for="">CPF</label><br>
+        <small id="errorCpf">o CPF deve estar no seguinte formato "xxx.xxx.xxx-xx"</small>
+        <input placeholder="digite seu cpf aqui" type="text" name="cpf" id="cpf" required><br>
 
+        <label for="">Senha</label><br>
+        <input placeholder="digite sua senha aqui" type="password" name="senha" id="senha" required><br>
+        <label class="showPass" onclick="showPass();">👁️</label><br>
+        <small style="background-color: #A61103 !important; color: #FFE8D0; border-radius: 20px;" id="error">Cpf ou senha Inválido!</small>
+        <button type="button" onclick="login();">Entrar</button>
+        <a style="text-decoration: none;" href="#"><small style="display: block !important">Esqueci a senha</small></a>
+
+        
+    </center>
+    </form>
+</div>
 <script>footer();</script>
 </body>
 </html>

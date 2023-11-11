@@ -12,20 +12,17 @@ function showPass(){
 
 function cadastrar() {
     const nome = document.getElementById('nome').value;
-    const email = document.getElementById('email').value;
     const senha = document.getElementById('senha').value;
     const cpf = document.getElementById('cpf').value;
     const telefone = document.getElementById('telefone').value;
 
     const sNome = document.getElementById('sNome');
-    const sEmail = document.getElementById('sEmail');
     const sSenha = document.getElementById('sSenha');
     const sCPF = document.getElementById('sCPF');
     const sTelefone = document.getElementById('sTelefone');
 
 
     const regexNome = /^[a-zA-Z]+( [a-zA-Z]+)*$/;
-    const regexEmail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/;
     const regexSenha = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
     const regexCpf = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
     //padrão do telefone: (xx)xxxxx-xxxx
@@ -36,12 +33,6 @@ function cadastrar() {
         sNome.style.display = 'block';
     }else{
         sNome.style.display = 'none';
-    }
-
-    if(!regexEmail.test(email)){
-        sEmail.style.display = 'block';
-    }else{
-        sEmail.style.display = 'none';
     }
 
     if(!regexSenha.test(senha)){
@@ -66,36 +57,28 @@ function cadastrar() {
 
 
     if(regexNome.test(nome) && 
-        regexEmail.test(email) && 
         regexSenha.test(senha) && 
         regexCpf.test(cpf) && 
         regexTelefone.test(telefone)){
-        const data = {
-            nome: nome,
-            email: email,
-            senha: senha,
-            cpf: cpf,
-            telefone: telefone
-        }
+        const usuario = { nome, senha, cpf, telefone }
         const options = {
             method: 'POST',
             headers: {
+                'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json'
             },
             
-            body: JSON.stringify(data)
+            body: JSON.stringify(usuario)
         }
-        //guarda a resposta da requisição em uma variável
-        fetch('cadastro', options).catch(err => alert(err.message))
-        .then(res => res.json()
-        .then(data => {
-            if(data.message === 'Usuário cadastrado com sucesso'){
-                alert(data.message);
+        fetch('cadastro', options).then(res => res.json()).then(async res => {
+            if(res.user){
+                alert('Cadastro realizado com sucesso!');
                 window.location.href = '/login';
             }else{
-                alert(data.message);
+                alert(res.message);
             }
-        }));
+        });
+        
 
 
     }
