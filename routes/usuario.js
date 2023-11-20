@@ -3,5 +3,7 @@ const authenticated = require('../api/middleware/authenticated');
 const router = Router();
 
 router
-    .post('/nome', authenticated.getName)
+    .get('/', authenticated.pagUsuario)
+    .post('/', authenticated.getAtributeFromToken)
+    .patch('/', authenticated.updateAtribute)
 module.exports = router;

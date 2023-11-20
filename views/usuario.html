@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  type="text/css" rel="stylesheet" href="../public/styles/form.css">
+    <script  src="../public/scripts/general.js"></script>
+    <script  src="../public/scripts/usuario.js"></script>
+    <title>Usuário</title>
+</head>
+<body>
+<script>header();</script>
+
+<div class="form">
+    <form>
+        <center>
+        <label for="">Nome</label><br>
+        <small id="sNome">o nome deve ter ao menos 3 caracteres</small>
+        <input placeholder="digite seu nome aqui" type="text" name="nome" id="nome" required><br>
+        
+        
+        <label for="">Telefone</label><br>
+        <small id="sTelefone">o telefone deve estar no seguinte formato "(xx) xxxxx-xxxx"</small>
+        <input placeholder="digite seu telefone aqui" type="tel" name="telefone" id="telefone" required><br>
+        
+
+        <label for="">CPF</label><br>
+        <input disabled type="text" name="cpf" id="cpf" required><br>
+
+        <button type="button" onclick="saveConf();">Salvar</button>
+    </center>
+    </form>
+</div>
+<script>preencherDados();</script>
+<script>footer();</script>
+    
+</body>
+</html>

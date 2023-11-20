@@ -57,6 +57,45 @@ class UsuarioService{
         return {accessToken};
         
     }
+
+    async updateUsuario(dto){
+        const dbUsuario = await db.Usuario.findOne(
+            {
+                where: { cpf: dto.cpf }
+            });
+        if(dbUsuario){
+            try{
+                await db.Usuario.update({
+                nome: dto.nome,
+                telefone: dto.telefone,
+                }, {
+                    where: { cpf: dto.cpf }
+                });
+
+                const usuario = await db.Usuario.findOne({
+                    attributes: ['id', 'nome', 'cpf', 'telefone', 'senha'],
+                    where: {
+                        cpf: dto.cpf
+                    }
+                })
+
+                const accessToken = sign({
+                    id: usuario.id,
+                    nome: usuario.nome,
+                    cpf: usuario.cpf,
+                    telefone: usuario.telefone
+                },  process.env.ACCESS_TOKEN_SECRET, {
+                    expiresIn: process.env.ACCESS_TOKEN_EXPIRATION
+                })
+                return {accessToken};
+            }catch(err){
+                throw new Error(err.message);
+            }
+        }else{
+            throw new Error('CPF não cadastrado');
+        }
+    }
+
 }
 
 module.exports = UsuarioService;

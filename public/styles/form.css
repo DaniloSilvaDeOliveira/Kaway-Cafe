@@ -1,4 +1,4 @@
-.cadastro{
+.form{
     align-items: center;
     display: flex;
 
@@ -8,30 +8,15 @@
     margin-inline: 50%;
     height: auto;
 }
-.cadastro small{
+.form small{
     font-family: 'Gelasio', serif;
     font-size: 12px;
     color: #A61103;
     display: none;
 
 }
-.cadastro form{
-    border-radius: 60px 14px;
-    background-color: #FFE8D0;
-    padding: 30px;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-}
 
-.cadastro form label{
-    font-family: 'Gelasio', serif;
-    font-size: 20px;
-    line-height: 20px;
-    color: #000;
-}
-
-.cadastro form input{
+.form select{
     width: 300px;
     height: 40px;
     border-radius: 15px;
@@ -40,18 +25,59 @@
     padding: 10px;
 }
 
-.cadastro form input:placeholder-shown{
+.preco label{
+    margin: 10px;
+    font-family: 'Gelasio', serif;
+    font-size: 20px;
+    line-height: 20px;
+    color: #000;
+}
+
+.form form{
+    border-radius: 60px 14px;
+    background-color: #FFE8D0;
+    padding: 30px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.form form label{
+    font-family: 'Gelasio', serif;
+    font-size: 20px;
+    line-height: 20px;
+    color: #000;
+}
+
+.form form input{
+    width: 300px;
+    height: 40px;
+    border-radius: 15px;
+    border: 1px solid #000;
+    margin: 10px;
+    padding: 10px;
+}
+
+.disabled{
+    background-color: #FFE8D0;
+    color: #A61103;
+    font-family: 'Gelasio', serif;
+    font-size: 20px;
+    border: 2px solid #A61103;
+}
+
+.form form input:placeholder-shown{
     font-family: 'Gelasio', serif;
     font-size: 18px;
     color: #A61103;
 }
 
-.cadastro form input:focus{
+.form form input:focus{
     outline: none;
     border: 2px solid #A61103;
 }
 
-.cadastro form button{
+.form form button{
     width: 300px;
     height: 40px;
     border-radius: 60px 14px;
@@ -67,13 +93,13 @@
 
 
 @media screen and (max-width: 768px) {
-    .cadastro{
+    .form{
         
         border-radius: 0px;
         margin-top: 100px;
         margin-inline: 1rem;
     }
-    .cadastro form{
+    .form form{
         
         padding: 20px 0px 0px 0px;
         width: 100%;
@@ -81,13 +107,42 @@
         margin: 0px;
         margin-inline: 1rem;
     }
-    .cadastro form input{
+    .form form input{
         width: 70%;
     }
-    .cadastro form button{
+    .form form button{
         width: 70%;
 
     }
+
+    .form form label{
+        font-size: 16px;
+    }
+    .form form input:placeholder-shown{
+        font-size: 16px;
+    }
+    .form form input:focus{
+        font-size: 16px;
+    }
+    .form form button{
+        font-size: 16px;
+    }
+    .form form select{
+        width: 70%;
+    }
+    .form form input{
+        width: 70%;
+    }
+    .form form input{
+        width: 70%;
+    }
+    .form form input{
+        width: 70%;
+    }
+    .form form input{
+        width: 70%;
+    }
+    
 
 
 

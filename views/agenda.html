@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link  type="text/css" rel="stylesheet" href="../public/styles/form.css">
+    <link rel="stylesheet" href="../public/styles/agenda.css">
+    <script  src="../public/scripts/general.js"></script>
+    <script defer  src="../public/scripts/agenda.js"></script>
+    <title>Agendar</title>
+</head>
+<body>
+    <script>header();</script>
+    <center>
+    <div class="agendaButtons">
+        <button onclick="showDiv('agendar')">Agendar</button>
+        <button onclick="showDiv('agenda')">Agenda</button>
+    </div>
+    </center>
+    <div class="form" id='agendar'>
+        <form>
+            <h1>Agendar</h1>
+
+            <label>Data</label>
+            <input type="date" name="data" id="data" required><br>
+            <script>
+                document.getElementById("data").onchange = function() {
+                    if(data.value < new Date().toISOString().split('T')[0]){
+                        alert("Data inválida");
+                        data.value = "";
+                    }else{
+                        generateOptions(data.value);
+                    }
+                    
+                }
+            </script>
+
+            <label for="">Horário de Entrada</label><br>
+            <select id="entrada">
+                
+            </select><br>
+
+            <label for="">Horário de Saída</label><br>
+            <select id="saida">
+
+            </select><br>
+            <script>
+                document.getElementById("entrada").onchange = function() {
+                    if(entrada.value > saida.value){
+                        alert("Horário de entrada não pode ser maior que o de saída");
+                        entrada.value = "";
+                    }
+                    gerarPreco(document.getElementById("entrada").value, document.getElementById("saida").value);
+
+                }
+                document.getElementById("saida").onchange = function() {
+                    if(entrada.value > saida.value){
+                        alert("Horário de entrada não pode ser maior que o de saída");
+                        saida.value = "";
+                    }
+                    gerarPreco(document.getElementById("entrada").value, document.getElementById("saida").value);
+                }
+
+            </script>
+
+            <label>Quarto</label>
+            <br>
+            <select id="nQuarto">
+                <option value="100">Quarto 100</option>
+                <option value="101">Quarto 101</option>
+            </select>
+            <br>
+            
+
+            
+            <label>Preço Final</label>
+            <div id="preco">
+                <label type="text" id="precoFinal" disabled>
+            </div>
+            <input type="button" onclick="Agendar()" value="Agendar" id="inputAgendar" disabled></input>
+        </form>
+    </div>
+    <div class="agenda" id='agenda'>
+        <table id="table">
+            <tr>
+                <th>Horário de Entrada</th>
+                <th>Horário de Saída</th>
+                <th>Data</th>
+                <th>Status</th>
+                <th>Quarto</th>
+                <th>Preço Final</th>
+            </tr>
+            <script>
+                agenda();
+            </script>
+        </table>
+    </div>
+
+    <script>
+        footer();
+    </script>
+</body>
+</html>

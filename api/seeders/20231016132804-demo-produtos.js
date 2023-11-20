@@ -11,6 +11,30 @@ module.exports = {
         updatedAt: new Date()
       },
       {
+        nome: 'Torta de Maracujá',
+        preco: 7.50,
+        descricao: 'Torta de maracujá com merengue',
+        categoria: 'tortas',
+        createdAT: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        nome: 'Torta de Abacaxi',
+        preco: 7.50,
+        descricao: 'Torta de abacaxi com chantilly',
+        categoria: 'tortas',
+        createdAT: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        nome: 'Torta de Maçã',
+        preco: 7.50,
+        descricao: 'Torta de maçã com chantilly',
+        categoria: 'tortas',
+        createdAT: new Date(),
+        updatedAt: new Date()
+      },
+      {
         nome: 'Torta de Morango',
         preco: 7.50,
         descricao: 'Torta de morango com chantilly',

@@ -17,6 +17,7 @@ const login = require('./routes/login.js');
 const cadastro = require('./routes/cadastro.js');
 const cardapio = require('./routes/cardapio.js');
 const usuario = require('./routes/usuario.js');
+const agenda = require('./routes/agenda.js');
 
 //Definindo as rotas
 app.use('/', home);
@@ -24,6 +25,7 @@ app.use('/login', login);
 app.use('/cadastro', cadastro);
 app.use('/cardapio', cardapio);
 app.use('/usuario',usuario)
+app.use('/agenda', agenda);
 
 
 //rota que disponibiliza a pasta public para acesso

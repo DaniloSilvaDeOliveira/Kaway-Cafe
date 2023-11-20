@@ -26,12 +26,19 @@ function exitPage(){
     window.location.href = "/";
 }
 function agendarPage(){
-    window.location.href = "agendar";
+    window.location.href = "agenda";
 }
 
 
 
 function normalHeader(){
+    //compara se a página atual é diferente de login cadastro ou cardapio ou home
+    if(window.location.pathname !== '/login' && window.location.pathname !== '/cadastro' && window.location.pathname !== '/cardapio' && window.location.pathname !== '/'){
+        //redirect to login
+        alert('Você precisa estar logado para acessar esta página');
+        window.location.href = "/";
+    }
+
     const headerElement = document.createElement('header');
 
     const logoLink = document.createElement('a');
@@ -61,7 +68,7 @@ function normalHeader(){
 }
 
 async function loggedHeader(){
-    const data = { token: localStorage.getItem('token') }
+    const data = { token: localStorage.getItem('token'), type: 'nome' }
     const options = {
         method: 'POST',
         headers: {
@@ -70,38 +77,56 @@ async function loggedHeader(){
         },
         body: JSON.stringify(data)
     }
-    const userNameText = await fetch('/usuario/nome', options).then(res => res.json()).then(async res => {
+    const userNameText = await fetch('/usuario/', options).then(res => res.json()).then(async res => {
         return res.nome;
     });
     //verifica se o token é válido
     if(userNameText === undefined){
-        print('sessão expirada');
+        alert('sessão expirada');
         localStorage.removeItem('token');
         window.location.href = "/";
     }
 
-    //arruma o header
-    const headerElement = document.createElement('header');
 
-    const logoLink = document.createElement('a');
-    logoLink.href = '/usuario';
-    const logoImage = document.createElement('img');
-    logoImage.classList.add('userLogo');
-    logoImage.src = '../public/images/user.png';
-    logoImage.alt = 'Logo de Usuário Genérico';
-    logoLink.appendChild(logoImage);
-    headerElement.appendChild(logoLink);
+    const headerElement = document.createElement('header');
+    if(window.location.pathname === '/usuario'){
+        const logoLink = document.createElement('a');
+        logoLink.href = '/';
+        const logoImage = document.createElement('img');
+        logoImage.src = '../public/images/logo.png';
+        logoImage.alt = 'Logo Kaway Café';
+        logoLink.appendChild(logoImage);
+        headerElement.appendChild(logoLink);
+    }else{
+        const logoLink = document.createElement('a');
+        logoLink.href = '/usuario';
+        const logoImage = document.createElement('img');
+        logoImage.classList.add('userLogo');
+        logoImage.src = '../public/images/user.png';
+        logoImage.alt = 'Logo de Usuário Genérico';
+        logoLink.appendChild(logoImage);
+        headerElement.appendChild(logoLink);
+    }
+
 
     const userName = document.createElement('p');
     userName.classList.add('userName');
     userName.textContent = userNameText;
     headerElement.appendChild(userName);
 
-    const agendarButton = document.createElement('button');
-    agendarButton.textContent = 'AGENDAR';
-    agendarButton.addEventListener('click', agendarPage);
-    headerElement.appendChild(agendarButton);
-
+    if(window.location.pathname === '/agenda'){
+        const logoLink = document.createElement('button');
+        logoLink.textContent = 'HOME';
+        logoLink.addEventListener('click', () => {
+            window.location.href = "/";
+        });
+        headerElement.appendChild(logoLink);
+    }else{
+        const agendarButton = document.createElement('button');
+        agendarButton.textContent = 'AGENDAR';
+        agendarButton.addEventListener('click', agendarPage);
+        headerElement.appendChild(agendarButton);
+    }
     const exitButton = document.createElement('button');
     exitButton.textContent = 'SAIR';
     exitButton.addEventListener('click', exitPage);
