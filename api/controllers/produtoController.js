@@ -39,7 +39,6 @@ class ProdutoController{
         const novoProduto = req.body;
         const listaProdutos = await database.Produtos.findAll();
         try{
-            //verifica se o body não está vazio
             if(novoProduto.nome == null || novoProduto.preco == null || novoProduto.descricao == null || novoProduto.categoria == null){
                 return res.status(400).json({erro: "O produto deve ter nome, preço, descrição e categoria."});
             }else if(novoProduto.updateAt != null || novoProduto.createAt != null){
