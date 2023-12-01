@@ -56,6 +56,17 @@ header{
     padding: 10px;
 }
 
+header button:disabled{
+    background-color: #592816;
+    color: #FFF;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    float: right;
+    margin: 0px 10px 0px 0px;
+    font-family: 'Julius Sans One';
+}	
+
 header button{
 
     display: flex;

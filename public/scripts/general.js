@@ -123,6 +123,7 @@ async function loggedHeader(){
         headerElement.appendChild(logoLink);
     }else{
         const agendarButton = document.createElement('button');
+        agendarButton.disabled = true;
         agendarButton.textContent = 'AGENDAR';
         agendarButton.addEventListener('click', agendarPage);
         headerElement.appendChild(agendarButton);
